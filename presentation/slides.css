@@ -1,3 +1,8 @@
+a {
+    background-color: rgba(128, 128, 128, 0.75);
+    color: white;
+}
+
 .command-list {
     list-style: none;
     padding: 0;

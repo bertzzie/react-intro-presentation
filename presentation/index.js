@@ -68,7 +68,7 @@ export default class Presentation extends React.Component {
               An Introduction
             </Heading>
             <Text margin="20px 0px 0px" italic textColor="#FFF">
-              Alex Xandra Albert Sim - Skipper
+              <Link href="https://github.com/bertzzie/">Alex Xandra Albert Sim</Link> - Skipper
             </Text>
           </Slide>
 
