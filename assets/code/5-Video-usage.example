@@ -1,0 +1,19 @@
+import HTMLVideo from "path-to-file";
+
+// some code...
+
+    render() {
+        return (
+            <some-tag>
+            // ...
+
+            <HTMLVideo 
+                className="super-video"
+                height="1080"
+                width="1920"
+                src="./path/to/video.mp4" />
+
+            // ...
+            </some-tag>
+        );
+    }

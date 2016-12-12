@@ -20,7 +20,8 @@ import {
   Quote,
   Slide,
   Spectacle,
-  Text
+  Text,
+  Table, TableHeaderItem, TableRow, TableItem
 } from "spectacle";
 
 import CodeSlide from "spectacle-code-slide";
@@ -48,7 +49,7 @@ preloader(images);
 
 const theme = createTheme({
   primary: "#00BD54",
-  secondary: "#FE5542"
+  secondary: "#FFF"
 }, {
   primary: { name: "Droid Serif", googleFont: true, styles: ["400", "700i"] },
   secondary: "Helvetica"
@@ -163,6 +164,97 @@ export default class Presentation extends React.Component {
                 { loc: [5, 10], title: "Render to DOM"}
               ]}
             />
+
+            <Slide transition={["fade", "zoom"]}>
+              <Heading size={2}>State and Lifecycle</Heading>
+            </Slide>
+
+            <CodeSlide
+              transition={["zoom", "fade"]}
+              lang="jsx"
+              code={require("raw!../assets/code/3-App-state-didmount.example")}
+              ranges={[
+                { loc: [5, 8], title: "(Initial) State" },
+                { loc: [9, 10], title: "Lifecycle" },
+                { loc: [10, 16], title: "Set State" },
+                { loc: [32, 39], title: "Use State Data" }
+              ]}
+              />
+
+              <Slide transition={["slide", "fade"]}>
+                <Heading className="mini-heading">React Lifecycle</Heading>
+                <Table className="lifecycle-table">
+                  <thead>
+                    <TableRow>
+                      <TableHeaderItem>Method</TableHeaderItem>
+                      <TableHeaderItem>Fungsi</TableHeaderItem>
+                    </TableRow>
+                  </thead>
+                  <tbody>
+                    <TableRow>
+                      <TableItem><Code>componentWillMount</Code></TableItem>
+                      <TableItem>Mounting</TableItem>
+                    </TableRow>
+                    <TableRow>
+                      <TableItem><Code>componentDidMount</Code></TableItem>
+                      <TableItem>Mounting</TableItem>
+                    </TableRow>
+                    <TableRow>
+                      <TableItem><Code>componentWillReceiveProps</Code></TableItem>
+                      <TableItem>Updating</TableItem>
+                    </TableRow>
+                    <TableRow>
+                      <TableItem><Code>shouldComponentUpdate</Code></TableItem>
+                      <TableItem>Updating</TableItem>
+                    </TableRow>
+                    <TableRow>
+                      <TableItem><Code>componentWillUpdate</Code></TableItem>
+                      <TableItem>Updating</TableItem>
+                    </TableRow>
+                    <TableRow>
+                      <TableItem><Code>componentDidUpdate</Code></TableItem>
+                      <TableItem>Updating</TableItem>
+                    </TableRow>
+                    <TableRow>
+                      <TableItem><Code>componentWillUnmount</Code></TableItem>
+                      <TableItem>Unmounting</TableItem>
+                    </TableRow>
+                  </tbody>
+                </Table>
+              </Slide>
+
+            <Slide transition={["fade", "zoom"]}>
+              <Heading size={2}>Props</Heading>
+            </Slide>
+
+            <CodeSlide 
+              transition={["zoom", "fade"]}
+              lang="jsx"
+              code={require("raw!../assets/code/4-Video.example")}
+              ranges={[
+                { loc: [0, 1], title: "Imports" },
+                { loc: [16, 29], title: "Prop Types"},
+                { loc: [3, 15], title: "Prop Usage" }
+              ]}
+              />
+
+              <CodeSlide 
+                transition={["zoom", "fade"]}
+                lang="jsx"
+                code={require("raw!../assets/code/5-Video-usage.example")}
+                ranges={[
+                  { loc: [0, 1], title: "Import" },
+                  { loc: [9, 15], title: "Usage" },
+                ]}
+              />
+
+              <Slide transition={["fade", "slide"]}>
+                <Heading>Q & A</Heading>
+              </Slide>
+
+              <Slide transition={["fade", "slide"]}>
+                <Heading>Thank you!</Heading>
+              </Slide>
         </Deck>
       </Spectacle>
     );

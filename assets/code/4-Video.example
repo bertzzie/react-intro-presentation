@@ -1,0 +1,30 @@
+import React, {Component, PropTypes} from "react";
+
+class HTMLVideo extends Component {
+    render() {
+        return (
+            <video 
+              className={this.props.className}
+              height={this.props.height}
+              src={this.props.src}
+              width={this.props.width}>
+                No Browser Support :(
+            </video>
+        );
+    }
+}
+
+HTMLVideo.propTypes = {
+    className: PropTypes.string,
+    height: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+    src: PropTypes.string,
+    width: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ])
+};
+
+export default HTMLVideo;
