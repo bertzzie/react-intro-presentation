@@ -6,6 +6,7 @@ import {
   Appear,
   BlockQuote,
   Cite,
+  Code,
   CodePane,
   Deck,
   Fill,
@@ -22,31 +23,35 @@ import {
   Text
 } from "spectacle";
 
+import CodeSlide from "spectacle-code-slide";
+
 // Import image preloader util
 import preloader from "spectacle/lib/utils/preloader";
 
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
 
-// Import custom component
-import Interactive from "../assets/interactive";
-
 // Require CSS
 require("normalize.css");
 require("spectacle/lib/themes/default/index.css");
 
+require("./slides.css")
 
 const images = {
-  city: require("../assets/city.jpg"),
-  kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
-  markdown: require("../assets/markdown.png")
+  helloReactFiles: require("../assets/hello-react-files.png"),
+  reactAnim: require("../assets/react-anim.gif"),
+  reactLogo: require("../assets/react-logo.svg"),
+  tokopediaOffice: require("../assets/tokopedia-office.jpg")
 };
 
 preloader(images);
 
 const theme = createTheme({
-  primary: "#ff4081"
+  primary: "#00BD54",
+  secondary: "#FE5542"
+}, {
+  primary: { name: "Droid Serif", googleFont: true, styles: ["400", "700i"] },
+  secondary: "Helvetica"
 });
 
 export default class Presentation extends React.Component {
@@ -54,117 +59,110 @@ export default class Presentation extends React.Component {
     return (
       <Spectacle theme={theme}>
         <Deck transition={["zoom", "slide"]} transitionDuration={500}>
-          <Slide transition={["zoom"]} bgColor="primary">
-            <Heading size={1} fit caps lineHeight={1} textColor="black">
-              Spectacle
+          <Slide transition={["slide"]} bgImage={images.tokopediaOffice.replace("/", "")} bgDarken={0.75}>
+            <Heading size={1} fit lineHeight={1}>
+              react.js:
             </Heading>
-            <Heading size={1} fit caps>
-              A ReactJS Presentation Library
+            <Heading size={1} fit>
+              An Introduction
             </Heading>
-            <Heading size={1} fit caps textColor="black">
-              Where You Can Write Your Decks In JSX
+            <Text margin="20px 0px 0px" italic textColor="#FFF">
+              Alex Xandra Albert Sim - Skipper
+            </Text>
+          </Slide>
+
+          <Slide transition={["slide", "zoom"]} bgColor="#FFF" textColor="primary">
+            <Heading size={1} textColor="primary">react.js?</Heading>
+            <ul className="item-list">
+              <li><Appear fid="1"><Text textColor="primary">UI Library</Text></Appear></li>
+              <li><Appear fid="2"><Text textColor="primary">Component Based</Text></Appear></li>
+              <li><Appear fid="3"><Text textColor="primary">Declarative, efficient, flexible</Text></Appear></li>
+              <li><Appear fid="4"><Text textColor="primary">Let's see some code!</Text></Appear></li>
+            </ul>
+          </Slide>
+
+          <Slide transition={["slide"]}>
+            <Heading fit>
+              Starting Command
             </Heading>
-            <Link href="https://github.com/FormidableLabs/spectacle">
-              <Text bold caps textColor="tertiary">View on Github</Text>
-            </Link>
-            <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
+            <ul className="command-list">
+              <li>
+                <Appear fid="1">
+                  <Code>$ npm install -g create-react-app</Code>
+                </Appear>
+              </li>
+              <li>
+                <Appear fid="2">
+                  <Code>$ create-react-app &lt;app-name&gt;</Code>
+                </Appear>
+              </li>
+              <li>
+                <Appear fid="3">
+                  <Code>$ cd &lt;app-name&gt;</Code>
+                </Appear>
+              </li>
+              <li>
+                <Appear fid="4">
+                  <Code>$ npm start </Code>
+                </Appear>
+              </li>
+            </ul>
           </Slide>
-          <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
-            <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/>
-            <Heading size={2} caps fit textColor="primary" textFont="primary">
-              Wait what?
-            </Heading>
-          </Slide>
-          <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
-            <CodePane
-              lang="jsx"
-              source={require("raw!../assets/deck.example")}
-              margin="20px auto"
-            />
-          </Slide>
-          <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.75}>
-            <Appear fid="1">
-              <Heading size={1} caps fit textColor="primary">
-                Full Width
-              </Heading>
-            </Appear>
-            <Appear fid="2">
-              <Heading size={1} caps fit textColor="tertiary">
-                Adjustable Darkness
-              </Heading>
-            </Appear>
-            <Appear fid="3">
-              <Heading size={1} caps fit textColor="primary">
-                Background Imagery
-              </Heading>
-            </Appear>
-          </Slide>
-          <Slide transition={["zoom", "fade"]} bgColor="primary">
-            <Heading caps fit>Flexible Layouts</Heading>
-            <Layout>
+
+          <Slide transition={["zoom", "fade"]} className="fill-content">
+            <Layout style={{ alignItems: "center", justifyContent: "center" }}>
               <Fill>
-                <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                  Left
-                </Heading>
+                <Heading className="side-header" textSize="4rem">Starting Files</Heading>
               </Fill>
               <Fill>
-                <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                  Right
-                </Heading>
+                <Image src={images.helloReactFiles.replace("/", "")} />
               </Fill>
             </Layout>
           </Slide>
-          <Slide transition={["slide"]} bgColor="black">
-            <BlockQuote>
-              <Quote>Wonderfully formatted quotes</Quote>
-              <Cite>Ken Wheeler</Cite>
-            </BlockQuote>
-          </Slide>
-          <Slide transition={["spin", "zoom"]} bgColor="tertiary">
-            <Heading caps fit size={1} textColor="primary">
-              Inline Markdown
-            </Heading>
-            <Markdown>
-              {`
-![Markdown Logo](${images.markdown.replace("/", "")})
 
-You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
-* Lists too!
-* With ~~strikethrough~~ and _italic_
-* And lets not forget **bold**
-              `}
-            </Markdown>
+          <CodeSlide 
+            transition={["zoom", "fade"]}
+            lang="jsx"
+            code={require("raw!../assets/code/0-App.example")}
+            ranges={[
+              { loc: [0, 17], title: "App.js" },
+              { loc: [0, 3], title: "(ES6) Imports" },
+              { loc: [4, 5], title: "Compnent Creation" },
+              { loc: [5, 12], title: "Render function" }
+            ]} />
+
+          <Slide transition={["slide", "zoom"]} style={{margin: 0, padding: 0}}>
+              <Image src={images.reactAnim.replace("/", "")} style={{margin: 0, width: "100%"}} />
           </Slide>
-          <Slide transition={["slide", "spin"]} bgColor="primary">
-            <Heading caps fit size={1} textColor="tertiary">
-              Smooth
-            </Heading>
-            <Heading caps fit size={1} textColor="secondary">
-              Combinable Transitions
-            </Heading>
-          </Slide>
-          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
-            <List>
-              <Appear><ListItem>Inline style based theme system</ListItem></Appear>
-              <Appear><ListItem>Autofit text</ListItem></Appear>
-              <Appear><ListItem>Flexbox layout system</ListItem></Appear>
-              <Appear><ListItem>React-Router navigation</ListItem></Appear>
-              <Appear><ListItem>PDF export</ListItem></Appear>
-              <Appear><ListItem>And...</ListItem></Appear>
-            </List>
-          </Slide>
-          <Slide transition={["slide"]} bgColor="primary">
-            <Heading size={1} caps fit textColor="tertiary">
-              Your presentations are interactive
-            </Heading>
-            <Interactive/>
-          </Slide>
-          <Slide transition={["spin", "slide"]} bgColor="tertiary">
-            <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
-              Made with love in Seattle by
-            </Heading>
-            <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>
-          </Slide>
+
+          <CodeSlide 
+            transition={["zoom", "fade"]}
+            lang="jsx"
+            code={require("raw!../assets/code/0-App.example")}
+            ranges={[
+              { loc: [5, 12], title: "Render function" },
+              { loc: [14, 15], title: "Export" }
+            ]} />
+
+            <CodeSlide
+              transition={["zoom", "fade"]}
+              lang="html"
+              code={require("raw!../assets/code/1-index-html.example")}
+              ranges={[
+                { loc: [0, 9], title: "HTML" },
+                { loc: [6, 7], title: "React Root Element" }
+              ]}
+            />
+
+            <CodeSlide
+              transition={["zoom", "fade"]}
+              lang="jsx"
+              code={require("raw!../assets/code/2-index-js.example")}
+              ranges={[
+                { loc: [1, 4], title: "ReactDOM" },
+                { loc: [5, 10], title: "Render to DOM"}
+              ]}
+            />
         </Deck>
       </Spectacle>
     );
