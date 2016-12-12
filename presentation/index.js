@@ -254,6 +254,10 @@ export default class Presentation extends React.Component {
 
               <Slide transition={["fade", "slide"]}>
                 <Heading>Thank you!</Heading>
+
+                <Text style={{color: "white", marginTop: "1em"}}>
+                  Demo code <Link href="https://github.com/bertzzie/hello-react">here</Link>
+                </Text>
               </Slide>
         </Deck>
       </Spectacle>
